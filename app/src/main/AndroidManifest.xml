@@ -10,10 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo_memoriapp"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MemoriApp"
+        android:theme="@style/Base.Theme.MemoriApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".UserInfoActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
