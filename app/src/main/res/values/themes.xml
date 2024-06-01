@@ -9,6 +9,10 @@
 
     <style name="Theme.MemoriApp" parent="Base.Theme.MemoriApp" />
 
+    <style name="BottomNavigationItem" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@android:color/transparent </item>
+    </style>
+
 
 
 </resources>

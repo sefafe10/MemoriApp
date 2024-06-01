@@ -34,11 +34,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_profile
             )
         )
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        // Elimina esta línea para evitar la configuración de ActionBar
+        // setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        setContentView(R.layout.activity_main)
-
     }
+
 
     fun sendUserDataToProfileFragment() {
         val sharedPreferences = getSharedPreferences("UserInfo", MODE_PRIVATE)
