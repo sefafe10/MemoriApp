@@ -17,11 +17,12 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo_memoriapp"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MemoriApp"
+        android:theme="@style/Base.Theme.MemoriApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".UserInfoActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,9 +30,15 @@
             </intent-filter>
         </activity>
 
+
         <activity android:name="com.android.calendar.AllInOneActivity">
-            <!-- Puedes agregar aquí los intent-filters necesarios si vas a iniciar esta actividad desde otras aplicaciones -->
         </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+        </activity>
+
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import com.example.memoriapp.HomeFragment
+import com.example.memoriapp.ProfileFragment
 import com.example.memoriapp.R
 
 class MainActivity : AppCompatActivity() {
@@ -12,26 +13,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val usuarioButton = findViewById<Button>(R.id.button)
+    }
 
-        usuarioButton.setOnClickListener {
-            // Crear una instancia del fragmento HomeFragment
-            val homeFragment = HomeFragment()
+    fun sendUserDataToProfileFragment() {
+        val sharedPreferences = getSharedPreferences("UserInfo", MODE_PRIVATE)
+        val bundle = Bundle()
+        bundle.putString("name", sharedPreferences.getString("name", ""))
+        bundle.putString("lastName", sharedPreferences.getString("lastName", ""))
+        bundle.putString("dob", sharedPreferences.getString("dob", ""))
+        bundle.putBoolean("hasChildren", sharedPreferences.getBoolean("hasChildren", false))
+        bundle.putString("childrenCount", sharedPreferences.getString("childrenCount", ""))
+        bundle.putBoolean("hasPet", sharedPreferences.getBoolean("hasPet", false))
+        bundle.putString("petCount", sharedPreferences.getString("petCount", ""))
 
-            // Obtener el FragmentManager
-            val fragmentManager = supportFragmentManager
+        val profileFragment = ProfileFragment()
+        profileFragment.arguments = bundle
 
-            // Iniciar una transacción
-            val transaction = fragmentManager.beginTransaction()
-
-            // Reemplazar el contenido del contenedor principal con el fragmento HomeFragment
-            transaction.replace(R.id.activity_main, homeFragment)
-
-            // Agregar la transacción al BackStack
-            transaction.addToBackStack(null)
-
-            // Confirmar la transacción
-            transaction.commit()
-        }
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, profileFragment)
+            .commit()
     }
 }
