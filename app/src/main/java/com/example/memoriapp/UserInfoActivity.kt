@@ -290,18 +290,33 @@ class UserInfoActivity : AppCompatActivity() {
         editor.putString("name", name)
         editor.putString("lastName", lastName)
         editor.putString("dob", dob)
-        if (checkBoxChildren?.isChecked == true) {
-            editor.putBoolean("hasChildren", true)
-            editor.putString("childrenCount", editTextChildren?.text.toString().trim())
+
+        // Guardar los nombres de los hijos/as si se han añadido
+        if (checkBoxChildren?.isChecked == true && childrenAdded) {
+            val childrenLayout = findViewById<LinearLayout>(R.id.layout_hijos)
+            for (i in 0 until childrenLayout.childCount) {
+                val childEditText = childrenLayout.getChildAt(i) as EditText
+                val childName = childEditText.text.toString().trim()
+                editor.putString("child_$i", childName)
+            }
+            editor.putInt("childrenCount", childrenLayout.childCount)
         } else {
-            editor.putBoolean("hasChildren", false)
+            editor.putInt("childrenCount", 0)
         }
-        if (checkBoxPet?.isChecked == true) {
-            editor.putBoolean("hasPet", true)
-            editor.putString("petCount", editTextPetName?.text.toString().trim())
+
+        // Guardar los nombres de las mascotas si se han añadido
+        if (checkBoxPet?.isChecked == true && petsAdded) {
+            val petsLayout = findViewById<LinearLayout>(R.id.layout_mascotas)
+            for (i in 0 until petsLayout.childCount) {
+                val petEditText = petsLayout.getChildAt(i) as EditText
+                val petName = petEditText.text.toString().trim()
+                editor.putString("pet_$i", petName)
+            }
+            editor.putInt("petCount", petsLayout.childCount)
         } else {
-            editor.putBoolean("hasPet", false)
+            editor.putInt("petCount", 0)
         }
+
         editor.apply()
         Toast.makeText(this, "Información guardada correctamente", Toast.LENGTH_SHORT).show()
         redirectToMainActivity()
