@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 
 class HomeFragment : Fragment() {
 
@@ -50,7 +51,8 @@ class HomeFragment : Fragment() {
 
         // Configurar OnClickListener para cada botón
         usuarioButton.setOnClickListener {
-            // Aquí puedes añadir la funcionalidad que deseas para este botón
+            // Navegar a ProfileFragment
+            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
         }
 
         microfonoButton.setOnClickListener {
