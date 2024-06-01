@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-    <!-- Dimensiones comunes -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="spacing_normal">16dp</dimen>
     <dimen name="spacing_large">32dp</dimen>
     <dimen name="text_size_medium">18sp</dimen>
-    <!-- Puedes agregar más dimensiones según tus necesidades -->
 </resources>
+
