@@ -1,7 +1,10 @@
 package com.example.memoriapp
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
@@ -66,6 +69,20 @@ class UserInfoActivity : AppCompatActivity() {
             ).show()
         }
 
+        val textWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                checkSubmitButton()
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        }
+
+        editTextName?.addTextChangedListener(textWatcher)
+        editTextLastName?.addTextChangedListener(textWatcher)
+        editTextDOB?.addTextChangedListener(textWatcher)
+        editTextChildren?.addTextChangedListener(textWatcher)
+        editTextPetName?.addTextChangedListener(textWatcher)
+
         checkBoxChildren?.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 textViewChildrenCount?.visibility = View.VISIBLE
@@ -119,13 +136,17 @@ class UserInfoActivity : AppCompatActivity() {
         buttonAddChildren?.setOnClickListener {
             val childrenCountString = editTextChildren?.text.toString().trim()
             if (childrenCountString.isNotEmpty()) {
-                val childrenCount = childrenCountString.toInt()
-                if (childrenCount > 0) {
-                    addChildrenEditTexts(childrenCount)
-                    childrenAdded = true
-                    checkSubmitButton()
-                } else {
-                    editTextChildren?.error = "Por favor introduce un número válido mayor que cero"
+                try {
+                    val childrenCount = childrenCountString.toInt()
+                    if (childrenCount in 1..15) {
+                        addChildrenEditTexts(childrenCount)
+                        childrenAdded = true
+                        checkSubmitButton()
+                    } else {
+                        editTextChildren?.error = "Por favor introduce un número válido entre 1 y 15"
+                    }
+                } catch (e: NumberFormatException) {
+                    editTextChildren?.error = "Por favor introduce un número válido"
                 }
             } else {
                 editTextChildren?.error = "Por favor introduce el número de hijos/as"
@@ -135,18 +156,24 @@ class UserInfoActivity : AppCompatActivity() {
         buttonAddPet?.setOnClickListener {
             val petCountString = editTextPetName?.text.toString().trim()
             if (petCountString.isNotEmpty()) {
-                val petCount = petCountString.toInt()
-                if (petCount > 0) {
-                    addPetEditTexts(petCount)
-                    petsAdded = true
-                    checkSubmitButton()
-                } else {
-                    editTextPetName?.error = "Por favor introduce un número válido mayor que cero"
+                try {
+                    val petCount = petCountString.toInt()
+                    if (petCount in 1..15) {
+                        addPetEditTexts(petCount)
+                        petsAdded = true
+                        checkSubmitButton()
+                    } else {
+                        editTextPetName?.error = "Por favor introduce un número válido entre 1 y 15"
+                    }
+                } catch (e: NumberFormatException) {
+                    editTextPetName?.error = "Por favor introduce un número válido"
                 }
             } else {
                 editTextPetName?.error = "Por favor introduce el número de mascotas"
             }
         }
+
+        checkSubmitButton() // Inicializar el estado del botón de envío
     }
 
     private fun updateLabel() {
@@ -243,6 +270,15 @@ class UserInfoActivity : AppCompatActivity() {
         return isValid
     }
 
+    private fun redirectToMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun redirectToProfileFragment() {
+        (this as? MainActivity)?.sendUserDataToProfileFragment()
+    }
+
     private fun submitForm() {
         val name = editTextName?.text.toString().trim()
         val lastName = editTextLastName?.text.toString().trim()
@@ -268,10 +304,14 @@ class UserInfoActivity : AppCompatActivity() {
         }
         editor.apply()
         Toast.makeText(this, "Información guardada correctamente", Toast.LENGTH_SHORT).show()
+        redirectToMainActivity()
+        redirectToProfileFragment()
     }
 
     private fun checkSubmitButton() {
-        buttonSubmit?.isEnabled = childrenAdded || petsAdded
+        buttonSubmit?.isEnabled = (editTextName?.text?.isNotEmpty() == true &&
+                editTextLastName?.text?.isNotEmpty() == true &&
+                editTextDOB?.text?.isNotEmpty() == true) ||
+                childrenAdded || petsAdded
     }
 }
-
