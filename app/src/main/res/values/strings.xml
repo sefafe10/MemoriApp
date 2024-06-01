@@ -3,4 +3,5 @@
     <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
     <string name="title_home">Inicio</string>
     <string name="title_profile">Perfil</string>
+    <string name="finalizar">Finalizar</string>
 </resources>
