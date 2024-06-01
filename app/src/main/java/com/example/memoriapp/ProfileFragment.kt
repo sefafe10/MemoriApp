@@ -11,7 +11,14 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 
 class ProfileFragment : Fragment() {
-    private var sharedPreferences: SharedPreferences? = null
+
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var textViewName: TextView
+    private lateinit var textViewLastName: TextView
+    private lateinit var textViewDOB: TextView
+    private lateinit var textViewContentName: TextView
+    private lateinit var textViewContentLastName: TextView
+    private lateinit var textViewContentDOB: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,16 +30,81 @@ class ProfileFragment : Fragment() {
         // Obtener referencia al SharedPreferences
         sharedPreferences = requireActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE)
 
-        // Actualizar los TextView de contenido con los valores de SharedPreferences
-        view.findViewById<TextView>(R.id.textViewContentName)?.text = sharedPreferences?.getString("name", "")
-        view.findViewById<TextView>(R.id.textViewContentLastName)?.text = sharedPreferences?.getString("lastName", "")
-        view.findViewById<TextView>(R.id.textViewContentDOB)?.text = sharedPreferences?.getString("dob", "")
-        view.findViewById<TextView>(R.id.textViewContentChildren)?.text = sharedPreferences?.getString("childrenCount", "")
-        view.findViewById<TextView>(R.id.textViewContentPet)?.text = sharedPreferences?.getString("petCount", "")
+        // Inicializar TextViews
+        textViewName = view.findViewById(R.id.textViewName)
+        textViewLastName = view.findViewById(R.id.textViewLastName)
+        textViewDOB = view.findViewById(R.id.textViewDOB)
+        textViewContentName = view.findViewById(R.id.textViewContentName)
+        textViewContentLastName = view.findViewById(R.id.textViewContentLastName)
+        textViewContentDOB = view.findViewById(R.id.textViewContentDOB)
+
+        // Leer los valores almacenados en SharedPreferences y mostrarlos en los TextViews
+        val name = sharedPreferences.getString("name", "")
+        val lastName = sharedPreferences.getString("lastName", "")
+        val dob = sharedPreferences.getString("dob", "")
+
+        textViewContentName.text = name
+        textViewContentLastName.text = lastName
+        textViewContentDOB.text = dob
+        // Obtener los LinearLayouts
+        val childrenLayout = view.findViewById<LinearLayout>(R.id.childrenLayout)
+        val petsLayout = view.findViewById<LinearLayout>(R.id.petsLayout)
+
+        // Limpiar los LinearLayouts
+        childrenLayout.removeAllViews()
+        petsLayout.removeAllViews()
+
+        // Obtener y mostrar los nombres de los hijos/as
+        val childrenCount = sharedPreferences.getInt("childrenCount", 0)
+        for (i in 0 until childrenCount) {
+            val childName = sharedPreferences.getString("child_$i", "") ?: ""
+            if (childName.isNotEmpty()) {
+                addChildTextView(childName, childrenLayout)
+            }
+        }
+
+        // Obtener y mostrar los nombres de las mascotas
+        val petCount = sharedPreferences.getInt("petCount", 0)
+        for (i in 0 until petCount) {
+            val petName = sharedPreferences.getString("pet_$i", "") ?: ""
+            if (petName.isNotEmpty()) {
+                addPetTextView(petName, petsLayout)
+            }
+        }
 
         return view
     }
+
+    private fun addChildTextView(childName: String, parentLayout: LinearLayout) {
+        val textView = TextView(requireContext())
+        textView.layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        textView.textSize = 20f
+        textView.setPadding(0, 40, 0, 0)
+        textView.text = childName
+        parentLayout.addView(textView)
+    }
+
+    private fun addPetTextView(petName: String, parentLayout: LinearLayout) {
+        val textView = TextView(requireContext())
+        textView.layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        textView.textSize = 20f
+        textView.setPadding(0, 40, 0, 0)
+        textView.text = petName
+        parentLayout.addView(textView)
+    }
 }
+
+
+
+
+
+
 
 
 
