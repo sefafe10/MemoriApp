@@ -12,12 +12,6 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_surprise"
-        android:name="com.example.memoriapp.ui.surprise.SurpriseFragment"
-        android:label="@string/title_surpise"
-        tools:layout="@layout/fragment_surprise" />
-
-    <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.memoriapp.ui.notifications.NotificationsFragment"
         android:label="@string/title_profile"
