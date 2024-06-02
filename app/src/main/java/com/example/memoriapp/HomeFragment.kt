@@ -44,6 +44,7 @@ class HomeFragment : Fragment() {
         }
 
         // Buscar los ImageButtons por sus IDs
+        val relojButton = view.findViewById<ImageButton>(R.id.reloj)
         val microfonoButton = view.findViewById<ImageButton>(R.id.microfono)
         val libretaDeContactosButton = view.findViewById<ImageButton>(R.id.libreta_de_contactos)
         val camaraButton = view.findViewById<ImageButton>(R.id.camara)
@@ -54,10 +55,25 @@ class HomeFragment : Fragment() {
         val colorNegro = ContextCompat.getColor(requireContext(), android.R.color.black)
 
         // Aplicar el color negro a los drawables de los ImageButtons
+        relojButton.setColorFilter(colorNegro, PorterDuff.Mode.SRC_IN)
         microfonoButton.setColorFilter(colorNegro, PorterDuff.Mode.SRC_IN)
         libretaDeContactosButton.setColorFilter(colorNegro, PorterDuff.Mode.SRC_IN)
         camaraButton.setColorFilter(colorNegro, PorterDuff.Mode.SRC_IN)
         calendarioButton.setColorFilter(colorNegro, PorterDuff.Mode.SRC_IN)
+
+        // Configurar OnClickListener para el botón de reloj
+        relojButton.setOnClickListener {
+            // Intent para abrir la aplicación de reloj
+            val packageManager = requireContext().packageManager
+            val intent = packageManager.getLaunchIntentForPackage("com.android.deskclock") // Cambia el nombre del paquete por el de la aplicación de reloj en tu dispositivo
+            if (intent != null) {
+                startActivity(intent)
+            } else {
+                Toast.makeText(requireContext(), "Aplicación de reloj no encontrada", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
 
         microfonoButton.setOnClickListener {
             // Intent para abrir la aplicación de grabación de sonidos
