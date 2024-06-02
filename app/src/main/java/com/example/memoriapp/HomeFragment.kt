@@ -2,7 +2,9 @@ package com.example.memoriapp
 
 import android.Manifest
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.PorterDuff
 import android.net.Uri
@@ -18,11 +20,13 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeFragment : Fragment() {
 
+    private lateinit var sharedPreferences: SharedPreferences
     private val REQUEST_CALL_PERMISSION = 1
-    private val SOS_PHONE_NUMBER = " "
+    private var SOS_PHONE_NUMBER = " "
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,8 +35,15 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
+        // Obtener referencia al SharedPreferences
+        sharedPreferences = requireActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE)
+        val number = sharedPreferences.getString("number", "")
+
+        if (number != null) {
+            SOS_PHONE_NUMBER = number
+        }
+
         // Buscar los ImageButtons por sus IDs
-        val usuarioButton = view.findViewById<ImageButton>(R.id.usuario)
         val microfonoButton = view.findViewById<ImageButton>(R.id.microfono)
         val libretaDeContactosButton = view.findViewById<ImageButton>(R.id.libreta_de_contactos)
         val camaraButton = view.findViewById<ImageButton>(R.id.camara)
@@ -43,17 +54,10 @@ class HomeFragment : Fragment() {
         val colorNegro = ContextCompat.getColor(requireContext(), android.R.color.black)
 
         // Aplicar el color negro a los drawables de los ImageButtons
-        usuarioButton.setColorFilter(colorNegro, PorterDuff.Mode.SRC_IN)
         microfonoButton.setColorFilter(colorNegro, PorterDuff.Mode.SRC_IN)
         libretaDeContactosButton.setColorFilter(colorNegro, PorterDuff.Mode.SRC_IN)
         camaraButton.setColorFilter(colorNegro, PorterDuff.Mode.SRC_IN)
         calendarioButton.setColorFilter(colorNegro, PorterDuff.Mode.SRC_IN)
-
-        // Configurar OnClickListener para cada botón
-        usuarioButton.setOnClickListener {
-            // Navegar a ProfileFragment
-            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
-        }
 
         microfonoButton.setOnClickListener {
             // Intent para abrir la aplicación de grabación de sonidos
@@ -122,4 +126,5 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
 }

@@ -8,28 +8,17 @@
     >
 
     <ImageButton
-        android:layout_marginTop="100dp"
-        android:id="@+id/usuario"
-        android:layout_width="120dp"
-        android:layout_height="100dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/usuario"
-        app:layout_constraintEnd_toStartOf="@id/microfono"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:backgroundTint="@android:color/transparent"/>
-
-    <ImageButton
-        android:layout_marginTop="100dp"
         android:id="@+id/microfono"
         android:layout_width="120dp"
         android:layout_height="100dp"
         android:scaleType="centerInside"
         android:src="@drawable/microfono"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/usuario"
+        app:layout_constraintBottom_toTopOf="@id/sos"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/sos"
         android:backgroundTint="@android:color/transparent"
+        android:layout_marginEnd="50dp"
         />
 
     <ImageButton
@@ -38,11 +27,12 @@
         android:layout_height="100dp"
         android:scaleType="centerInside"
         android:src="@drawable/libreta_de_contactos"
-        app:layout_constraintTop_toBottomOf="@id/usuario"
-        app:layout_constraintBottom_toTopOf="@id/calendario"
-        app:layout_constraintEnd_toStartOf="@id/camara"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/sos"
+        app:layout_constraintEnd_toStartOf="@id/sos"
         app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="@android:color/transparent"/>
+        android:backgroundTint="@android:color/transparent"
+        android:layout_marginStart="50dp"/>
 
     <ImageButton
         android:id="@+id/camara"
@@ -50,11 +40,12 @@
         android:layout_height="100dp"
         android:scaleType="centerInside"
         android:src="@drawable/camara"
-        app:layout_constraintBottom_toTopOf="@id/sos"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/libreta_de_contactos"
-        app:layout_constraintTop_toBottomOf="@id/microfono"
-        android:backgroundTint="@android:color/transparent"/>
+        app:layout_constraintStart_toEndOf="@id/sos"
+        app:layout_constraintTop_toBottomOf="@id/sos"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_marginEnd="50dp"/>
 
     <ImageButton
         android:id="@+id/calendario"
@@ -65,8 +56,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/sos"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/libreta_de_contactos"
-        android:backgroundTint="@android:color/transparent"/>
+        app:layout_constraintTop_toBottomOf="@id/sos"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_marginStart="50dp"/>
 
     <ImageButton
         android:id="@+id/sos"
@@ -76,8 +68,8 @@
         android:src="@drawable/sos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/calendario"
-        app:layout_constraintTop_toBottomOf="@id/camara"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:backgroundTint="@android:color/transparent"
         />
 

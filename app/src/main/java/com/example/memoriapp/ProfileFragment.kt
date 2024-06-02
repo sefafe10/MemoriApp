@@ -56,22 +56,30 @@ class ProfileFragment : Fragment() {
 
         // Obtener y mostrar los nombres de los hijos/as
         val childrenCount = sharedPreferences.getInt("childrenCount", 0)
-        for (i in 0 until childrenCount) {
-            val childName = sharedPreferences.getString("child_$i", "") ?: ""
-            if (childName.isNotEmpty()) {
-                addChildTextView(childName, childrenLayout)
+
+        if (childrenCount==0){
+            addChildTextView("No tienes hijos/as", childrenLayout)
+        }else{
+            for (i in 0 until childrenCount) {
+                val childName = sharedPreferences.getString("child_$i", "") ?: ""
+                if (childName.isNotEmpty()) {
+                    addChildTextView(childName, childrenLayout)
+                }
             }
         }
-
         // Obtener y mostrar los nombres de las mascotas
         val petCount = sharedPreferences.getInt("petCount", 0)
-        for (i in 0 until petCount) {
-            val petName = sharedPreferences.getString("pet_$i", "") ?: ""
-            if (petName.isNotEmpty()) {
-                addPetTextView(petName, petsLayout)
+
+        if (petCount==0){
+            addPetTextView("No tienes mascotas", petsLayout)
+        }else {
+            for (i in 0 until petCount) {
+                val petName = sharedPreferences.getString("pet_$i", "") ?: ""
+                if (petName.isNotEmpty()) {
+                    addPetTextView(petName, petsLayout)
+                }
             }
         }
-
         return view
     }
 
@@ -99,12 +107,3 @@ class ProfileFragment : Fragment() {
         parentLayout.addView(textView)
     }
 }
-
-
-
-
-
-
-
-
-

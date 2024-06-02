@@ -24,6 +24,7 @@ class UserInfoActivity : AppCompatActivity() {
     private var editTextName: EditText? = null
     private var editTextLastName: EditText? = null
     private var editTextDOB: EditText? = null
+    private var editTextNumber: EditText? = null
     private var editTextChildren: EditText? = null
     private var editTextPetName: EditText? = null
     private var checkBoxChildren: CheckBox? = null
@@ -44,6 +45,7 @@ class UserInfoActivity : AppCompatActivity() {
         editTextName = findViewById(R.id.editTextName)
         editTextLastName = findViewById(R.id.editTextLastName)
         editTextDOB = findViewById(R.id.editTextDOB)
+        editTextNumber = findViewById(R.id.editTextNumber)
         editTextChildren = findViewById(R.id.editTextChildren)
         editTextPetName = findViewById(R.id.editTextPetName)
         checkBoxChildren = findViewById(R.id.checkBoxChildren)
@@ -81,6 +83,7 @@ class UserInfoActivity : AppCompatActivity() {
         editTextName?.addTextChangedListener(textWatcher)
         editTextLastName?.addTextChangedListener(textWatcher)
         editTextDOB?.addTextChangedListener(textWatcher)
+        editTextNumber?.addTextChangedListener(textWatcher)
         editTextChildren?.addTextChangedListener(textWatcher)
         editTextPetName?.addTextChangedListener(textWatcher)
 
@@ -226,7 +229,8 @@ class UserInfoActivity : AppCompatActivity() {
         val fields = listOf(
             editTextName,
             editTextLastName,
-            editTextDOB
+            editTextDOB,
+            editTextNumber
         )
 
         for (field in fields) {
@@ -284,6 +288,7 @@ class UserInfoActivity : AppCompatActivity() {
         val name = editTextName?.text.toString().trim()
         val lastName = editTextLastName?.text.toString().trim()
         val dob = editTextDOB?.text.toString().trim()
+        val number = editTextNumber?.text.toString().trim()
 
         // Guardar en SharedPreferences
         val sharedPreferences = getSharedPreferences("UserInfo", MODE_PRIVATE)
@@ -291,6 +296,7 @@ class UserInfoActivity : AppCompatActivity() {
         editor.putString("name", name)
         editor.putString("lastName", lastName)
         editor.putString("dob", dob)
+        editor.putString("number", number)
 
         // Guardar los nombres de los hijos/as si se han añadido
         if (checkBoxChildren?.isChecked == true && childrenAdded) {
@@ -327,7 +333,7 @@ class UserInfoActivity : AppCompatActivity() {
     private fun checkSubmitButton() {
         buttonSubmit?.isEnabled = (editTextName?.text?.isNotEmpty() == true &&
                 editTextLastName?.text?.isNotEmpty() == true &&
-                editTextDOB?.text?.isNotEmpty() == true) ||
+                editTextDOB?.text?.isNotEmpty() == true && editTextNumber?.text?.isNotEmpty() == true) ||
                 childrenAdded || petsAdded
     }
 }

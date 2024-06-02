@@ -10,7 +10,9 @@
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        />
+
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/navView"
@@ -19,7 +21,10 @@
             android:layout_alignParentBottom="true"
             app:menu="@menu/bottom_nav_menu"
             app:itemActiveIndicatorStyle="@style/BottomNavigationItem"
-
+            android:background="@drawable/bottom_navigation_background"
+            app:itemTextColor="@color/royal_blue"
+            app:itemIconTint="@color/royal_blue"
+            app:labelVisibilityMode="selected"
             />
 
         <fragment

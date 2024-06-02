@@ -1,18 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-
     <style name="Base.Theme.MemoriApp" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:forceDarkAllowed">false</item>
         <item name="fontFamily">@font/comfortaa</item>
         <item name="imageButtonStyle">@drawable/button_style</item>
+        <item name="android:statusBarColor">@color/blue_purple</item>
+        <!-- Cambiar el colorPrimary a blue_purple -->
+        <item name="colorPrimary">@color/blue_purple</item>
     </style>
 
-    <style name="Theme.MemoriApp" parent="Base.Theme.MemoriApp" />
+    <!-- Tema de la aplicación con ActionBar -->
+    <style name="Theme.MemoriApp" parent="Base.Theme.MemoriApp">
+        <item name="android:windowActionBar">true</item>
+        <item name="android:windowNoTitle">false</item>
+    </style>
 
+    <!-- Estilo personalizado para los elementos de la barra de navegación inferior -->
     <style name="BottomNavigationItem" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@android:color/transparent </item>
+        <item name="android:color">@android:color/transparent</item>
     </style>
-
-
 
 </resources>
