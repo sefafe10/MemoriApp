@@ -1,6 +1,5 @@
 # MemoriApp
 
-[![Build Status](https://github.com/sefafe10/MemoriApp/actions/workflows/build.yml/badge.svg)](https://github.com/sefafe10/MemoriApp/actions)
 [![License](https://img.shields.io/github/license/sefafe10/MemoriApp)](https://github.com/sefafe10/MemoriApp/blob/main/LICENSE)
 
 ## Descripción del Proyecto
