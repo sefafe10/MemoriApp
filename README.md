@@ -1,6 +1,6 @@
 # MemoriApp
 
-[![License](https://img.shields.io/github/license/sefafe10/MemoriApp)](https://github.com/sefafe10/MemoriApp/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/sefafe10/MemoriApp)](https://github.com/sefafe10/MemoriApp/LICENSE)
 
 ## Descripción del Proyecto
 
