@@ -1,6 +1,8 @@
 <p align="center">
-  <img src="https://github.com/sefafe10/MemoriApp/assets/168300981/f9541b77-f8dd-43dd-963e-be60741f984f" alt="logo_memoriapp" width="200"/>
+  <img src="https://github.com/sefafe10/MemoriApp/assets/168300981/2f57f35f-98ae-4c23-b6e4-a63822b458bd" alt="logo_memoriapp" width="300"/>
 </p>
+
+
 
 # MemoriApp
 
