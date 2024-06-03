@@ -61,7 +61,6 @@ MemoriApp utiliza el patrón de arquitectura MVC (Model-View-Controller):
 
 Asegúrate de tener instalado:
 
-- [Node.js](https://nodejs.org/) (versión 14 o superior)
 - [Git](https://git-scm.com/)
 
 ### Pasos de Instalación
