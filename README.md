@@ -94,7 +94,7 @@ Si tienes preguntas o sugerencias, abre un issue o contacta a través de [sefafe
 
 ## Créditos
 
-Icons made by Icongeek26 from [www.flaticon.com](www.flaticon.com)
+Icons made by Icongeek26 from [www.flaticon.com](https://www.flaticon.com)
 
 ---
 
