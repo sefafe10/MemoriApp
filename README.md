@@ -86,7 +86,7 @@ Asegúrate de tener instalado:
 
 ## Licencia
 
-Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](https://github.com/sefafe10/MemoriApp/blob/main/LICENSE) para más detalles.
+Este proyecto está bajo la licencia Apache. Consulta el archivo [LICENSE](https://github.com/sefafe10/MemoriApp/blob/main/LICENSE) para más detalles.
 
 ## Contacto
 
