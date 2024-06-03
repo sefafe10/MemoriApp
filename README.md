@@ -94,6 +94,10 @@ Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](https://
 
 Si tienes preguntas o sugerencias, abre un issue o contacta a través de [sefafe10@gmail.com](mailto:sefafe10@gmail.com).
 
+## Créditos
+
+Icons made by Icongeek26 from [www.flaticon.com](www.flaticon.com)
+
 ---
 
 ¡Gracias por usar MemoriApp!
