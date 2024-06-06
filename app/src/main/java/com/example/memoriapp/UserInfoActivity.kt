@@ -1,23 +1,17 @@
 package com.example.memoriapp
 
-
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputFilter
 import android.text.TextWatcher
+import android.text.method.DigitsKeyListener
 import android.view.View
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
+import java.util.*
 
 class UserInfoActivity : AppCompatActivity() {
 
@@ -56,6 +50,10 @@ class UserInfoActivity : AppCompatActivity() {
         textViewChildrenCount = findViewById(R.id.textViewChildrenCount)
         textViewPetCount = findViewById(R.id.textViewPetCount)
         myCalendar = Calendar.getInstance()
+
+        // Establecer un filtro para permitir solo números de teléfono en el formato correcto
+        editTextNumber?.keyListener = DigitsKeyListener.getInstance("0123456789")
+        editTextNumber?.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(15))
 
         val date = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
             myCalendar?.set(Calendar.YEAR, year)
